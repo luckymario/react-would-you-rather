@@ -50,11 +50,11 @@ class Question extends Component {
 			<Card className={classes.card}>
         <CardHeader
           avatar={
-            <Avatar aria-label="Recipe" className={classes.avatar}>
+            <Avatar aria-label="R" className={classes.avatar}>
               R
             </Avatar>
           }
-          title={`${author} says`}
+          title={`${author} asks`}
         />
         <CardContent>
           <Typography variant="title">

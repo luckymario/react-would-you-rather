@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 //import { connect } from 'react-redux'
-import Button from '@material-ui/core/Button';
+import Question from './Question'
 
 class Dashboard extends Component {
 	render() {
 		return (
-			<div>
-				<h1>Dashboard</h1>
-				<Button variant="contained" color="primary">
-		      Hello World
-		    </Button>
-			</div>
+			<div style={{width: '50%', maxWidth: '600px', margin: '0 auto'}}>
+	      <Question author='Tyler McGinnis' optionOne='find $50 yourself' optionTwo='have your best friend fintd $500' />
+	      <Question author='Sarah Edo' optionOne='have horrible short term memory' optionTwo='have horrible long term memory' />
+      </div>
 		)
 	}
 }

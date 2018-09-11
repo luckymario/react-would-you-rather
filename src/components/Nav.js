@@ -82,7 +82,7 @@ class Nav extends Component {
               </NavLink>
             </MenuItem>
             <MenuItem>
-              <NavLink to='/add' exact activeClassName='active'>
+              <NavLink to='/add' exact>
                 New Question
               </NavLink>
             </MenuItem>

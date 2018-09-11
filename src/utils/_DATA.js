@@ -24,7 +24,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: "https://pbs.twimg.com/profile_images/412341055460089856/VO1Nw1-j_400x400.jpeg",
+    avatarURL: "https://tylermcginnis.com/would-you-rather/dan.jpg",
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',

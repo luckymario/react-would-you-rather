@@ -3,3 +3,45 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.App-logo {
+	width: 200px;
+	height: 200px;
+	display: block;
+	margin: 0 auto;
+}
+
+.container {
+	height: calc(100vh - 84px);
+	padding-top: 20px;
+	display: flex;
+	align-items: center;
+  justify-content: center;
+}
+
+.nav-avatar {
+	margin-left: 100px;
+}
+
+.sign-in {
+	width: 90%;
+	max-width: 500px;
+}
+
+.sign-in-form {
+	display: flex !important;
+}
+
+.select-user {
+	margin: 30px 50px 0;
+}
+
+.sign-in-avatar-item {
+	margin-right: 10px;
+	width: 30px !important;
+	height: 30px !important;
+}
+
+.text-center {
+	text-align: center;
+}

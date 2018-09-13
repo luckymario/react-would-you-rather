@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 //import { connect } from 'react-redux'
-import Poll from './Poll'
+import Question from './Question'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
@@ -33,12 +33,12 @@ class Dashboard extends Component {
         </Tabs>
 
         {value === 0 && <TabContainer>
-          <Poll id='6ni6ok3ym7mf1p33lnez' />
-        	<Poll id='8xf0y6ziyjabvozdd253nd' />
+          <Question id='6ni6ok3ym7mf1p33lnez' />
+        	<Question id='8xf0y6ziyjabvozdd253nd' />
         </TabContainer>}
 
         {value === 1 && <TabContainer>
-        	<Poll id='6ni6ok3ym7mf1p33lnez' />
+        	<Question id='6ni6ok3ym7mf1p33lnez' />
         </TabContainer>}
       </div>
 		)

@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
 
-class Poll extends Component {
+class Question extends Component {
 	state = {
 		answer: null
 	}
@@ -60,4 +60,4 @@ function mapStateToProps ({ questions, users }, { id }) {
   }
 }
 
-export default connect(mapStateToProps)(Poll)
+export default connect(mapStateToProps)(Question)

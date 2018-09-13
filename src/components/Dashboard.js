@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 //import { connect } from 'react-redux'
-import Question from './Question'
+import Poll from './Poll'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
@@ -26,18 +26,19 @@ class Dashboard extends Component {
 		const { value } = this.state
 
 		return (
-			<div style={{width: '80%', maxWidth: '600px', margin: '0 auto'}}>
+			<div className='questions-container'>
 				<Tabs value={value} onChange={this.handleChange}>
-          <Tab label="Unanswered" />
-          <Tab label="Answered" />
+          <Tab label="Unanswered questions" />
+          <Tab label="Answered questions" />
         </Tabs>
 
         {value === 0 && <TabContainer>
-        	<Question author='Tyler McGinnis' optionOne='find $50 yourself' optionTwo='have your best friend find $500' />
+          <Poll author='Tyler McGinnis' optionOne='find $50 yourself' />
+        	<Poll author='Sarah Edo' optionOne='have horrible short term memory' />
         </TabContainer>}
 
         {value === 1 && <TabContainer>
-        	<Question author='Sarah Edo' optionOne='have horrible short term memory' optionTwo='have horrible long term memory' />
+        	<Poll author='Sarah Edo' optionOne='have horrible short term memory' />
         </TabContainer>}
       </div>
 		)

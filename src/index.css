@@ -15,17 +15,20 @@ body {
 	height: calc(100vh - 84px);
 	padding-top: 20px;
 	display: flex;
-	align-items: center;
-  justify-content: center;
+	justify-content: center;
 }
 
 .nav-avatar {
 	margin-left: 400px;
 }
 
+/* SignIn Component */
 .sign-in {
 	width: 90%;
+	height: 100%;
 	max-width: 500px;
+	display: flex;
+	align-items: center;
 }
 
 .sign-in-form {
@@ -42,6 +45,34 @@ body {
 	height: 30px !important;
 }
 
+/* Question Component */
+.questions-container {
+	width: 90vw;
+	max-width: 600px;
+	margin-top: 20px;
+}
+
+.question-avatar {
+	background-color: #f44336 !important;
+}
+
+.question-actions {
+	float: right;
+}
+
+.question-form-control {
+	margin-top: 15px;
+}
+
+.card-header-title span {
+	font-size: 1.2rem;
+}
+
+.poll {
+	margin-bottom: 20px;
+}
+
+/* General */
 .text-center {
 	text-align: center;
 }

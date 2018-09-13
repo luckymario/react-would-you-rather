@@ -14,7 +14,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
 
-class Question extends Component {
+class Poll extends Component {
 	state = {
 		answer: null
 	}
@@ -25,9 +25,10 @@ class Question extends Component {
 
 	render() {
 		const { author, optionOne, optionTwo } = this.props
+    const snippet = optionOne.slice(0, 20)
 
 		return (
-			<Card>
+			<Card className='poll'>
         <CardHeader
           avatar={
             <Avatar aria-label="R" className='question-avatar'>
@@ -35,26 +36,16 @@ class Question extends Component {
             </Avatar>
           }
           title={`${author} asks`}
+          className='card-header-title'
         />
         <CardContent>
-          <Typography variant="title">
-            Would you rather...
+          <Typography variant="subheading">
+            {`...${snippet}...`}
           </Typography>
-          <FormControl component="fieldset" className='question-form-control'>
-	          <RadioGroup
-	            aria-label="Answer"
-	            name="answer"
-	            value={this.state.answer}
-	            onChange={this.handleChange}
-	          >
-	            <FormControlLabel value="1" control={<Radio />} label={optionOne} />
-	            <FormControlLabel value="2" control={<Radio />} label={optionTwo} />
-	          </RadioGroup>
-	        </FormControl>
         </CardContent>
         <CardActions className='question-actions'>
           <Button variant="contained" color="primary">
-		        Submit
+		        View poll
 		      </Button>
         </CardActions>
       </Card>
@@ -62,10 +53,9 @@ class Question extends Component {
 	}
 }
 
-Question.propTypes = {
+Poll.propTypes = {
   author: PropTypes.string.isRequired,
-  optionOne: PropTypes.string.isRequired,
-  optionTwo: PropTypes.string.isRequired,
+  optionOne: PropTypes.string.isRequired
 };
 
-export default Question
+export default Poll

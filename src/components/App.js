@@ -5,7 +5,7 @@ import { handleInitialData } from '../actions/shared'
 import Nav from './Nav'
 import SignIn from './SignIn'
 import Dashboard from './Dashboard'
-import Question from './Question'
+import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 
@@ -23,7 +23,7 @@ class App extends Component {
             {this.props.auth
                 ? <Fragment>
                     <Route path='/' exact component={Dashboard} />
-                    <Route path='/question/:id' component={Question} />
+                    <Route path='/question/:id' component={QuestionPage} />
                     <Route path='/add' component={NewQuestion} />
                     <Route path='/leaderboard' component={LeaderBoard} />
                   </Fragment>

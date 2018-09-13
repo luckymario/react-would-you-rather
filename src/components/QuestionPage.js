@@ -12,7 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
 
-class Question extends Component {
+class QuestionPage extends Component {
 	state = {
 		answer: null
 	}
@@ -74,4 +74,4 @@ function mapStateToProps ({ questions, users }, props) {
   }
 }
 
-export default connect(mapStateToProps)(Question)
+export default connect(mapStateToProps)(QuestionPage)

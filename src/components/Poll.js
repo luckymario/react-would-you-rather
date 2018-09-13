@@ -1,18 +1,13 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-//import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 import CardActions from '@material-ui/core/CardActions'
 import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
-import red from '@material-ui/core/colors/red'
-import Radio from '@material-ui/core/Radio'
-import RadioGroup from '@material-ui/core/RadioGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
 
 class Poll extends Component {
 	state = {
@@ -24,18 +19,16 @@ class Poll extends Component {
   }
 
 	render() {
-		const { author, optionOne, optionTwo } = this.props
+		const { id, author, optionOne } = this.props
     const snippet = optionOne.slice(0, 20)
 
 		return (
 			<Card className='poll'>
         <CardHeader
           avatar={
-            <Avatar aria-label="R" className='question-avatar'>
-              R
-            </Avatar>
+            <Avatar src={author.avatarURL} className='question-avatar' />
           }
-          title={`${author} asks`}
+          title={`${author.name} asks`}
           className='card-header-title'
         />
         <CardContent>
@@ -44,18 +37,27 @@ class Poll extends Component {
           </Typography>
         </CardContent>
         <CardActions className='question-actions'>
-          <Button variant="contained" color="primary">
-		        View poll
-		      </Button>
+          <Link to={`/question/${id}`}>
+            <Button variant="contained" color="primary">
+  		        View poll
+  		      </Button>
+          </Link>
         </CardActions>
       </Card>
 		)
 	}
 }
 
-Poll.propTypes = {
-  author: PropTypes.string.isRequired,
-  optionOne: PropTypes.string.isRequired
-};
+function mapStateToProps ({ questions, users }, { id }) {
+  const authorId = questions[id].author
+  const author = users[authorId]
+  const optionOne = questions[id].optionOne.text
 
-export default Poll
+  return {
+    id,
+    author,
+    optionOne
+  }
+}
+
+export default connect(mapStateToProps)(Poll)

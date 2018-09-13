@@ -33,12 +33,12 @@ class Dashboard extends Component {
         </Tabs>
 
         {value === 0 && <TabContainer>
-          <Poll author='Tyler McGinnis' optionOne='find $50 yourself' />
-        	<Poll author='Sarah Edo' optionOne='have horrible short term memory' />
+          <Poll id='6ni6ok3ym7mf1p33lnez' />
+        	<Poll id='8xf0y6ziyjabvozdd253nd' />
         </TabContainer>}
 
         {value === 1 && <TabContainer>
-        	<Poll author='Sarah Edo' optionOne='have horrible short term memory' />
+        	<Poll id='6ni6ok3ym7mf1p33lnez' />
         </TabContainer>}
       </div>
 		)

@@ -5,6 +5,7 @@ import { handleInitialData } from '../actions/shared'
 import Nav from './Nav'
 import SignIn from './SignIn'
 import Dashboard from './Dashboard'
+import Question from './Question'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 
@@ -20,16 +21,18 @@ class App extends Component {
           <Nav />
           <div className='container'>
             {this.props.auth
-                ? <div>
+                ? <Fragment>
                     <Route path='/' exact component={Dashboard} />
+                    <Route path='/question/:id' component={Question} />
                     <Route path='/add' component={NewQuestion} />
                     <Route path='/leaderboard' component={LeaderBoard} />
-                  </div>
-                : <div>
+                  </Fragment>
+                : <Fragment>
                     <Route path='/' exact component={SignIn} />
+                    <Route path='/question/:id' component={SignIn} />
                     <Route path='/add' component={SignIn} />
                     <Route path='/leaderboard' component={SignIn} />
-                  </div>}
+                  </Fragment>}
           </div>
         </Fragment>
       </Router>

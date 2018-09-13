@@ -32,7 +32,7 @@ class SignIn extends Component {
 
 	render() {
 		return (
-			<div className='sign-in'>
+			<div className='sign-in-page'>
 				<Card>
 	        <CardHeader title="Welcome to Would You Rather App"/>
 	        <CardContent>

@@ -23,7 +23,7 @@ class Question extends Component {
     const snippet = optionOne.slice(0, 20)
 
 		return (
-			<Card className='poll'>
+			<Card className='question'>
         <CardHeader
           avatar={
             <Avatar src={author.avatarURL} className='question-avatar' />

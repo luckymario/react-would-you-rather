@@ -56,11 +56,11 @@ class Nav extends Component {
     const index = users.findIndex(u => u.id == authedUser)
     const user = auth ? users[index] : null
 
-    console.log(user)
+    //console.log(user)
 
     return (
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar className='nav'>
           <IconButton
             color="inherit"
             aria-label="Menu"
@@ -82,22 +82,22 @@ class Nav extends Component {
               </NavLink>
             </MenuItem>
             <MenuItem>
-              <NavLink to='/add' exact>
+              <NavLink to='/add' exact activeClassName='active'>
                 New Question
               </NavLink>
             </MenuItem>
             <MenuItem>
-              <NavLink to='/leaderboard' exact>
+              <NavLink to='/leaderboard' exact activeClassName='active'>
                 Leader Board
               </NavLink>
             </MenuItem>
           </Menu>
 
-          <Typography variant="title" color="inherit">
+          <Typography variant="title" color="inherit" className='nav-name'>
             Would you rather?
           </Typography>
 
-          {auth && (<div>
+          {auth && (<div className='nav-user'>
                 <span>Hello, {user.name}</span>
                 <Avatar
                   alt={user.name}

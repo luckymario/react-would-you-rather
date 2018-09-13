@@ -18,8 +18,48 @@ body {
 	justify-content: center;
 }
 
+/* Navigation */
+.nav {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0 !important;
+}
+
+.nav-menu {
+	width: 48px;
+}
+
+.nav-name {
+	width: calc(100% - 290px);
+}
+
+.nav-user {
+	width: 242px;
+	text-align: right;
+}
+
+.nav-user span {
+	line-height: 40px;
+}
+
 .nav-avatar {
-	margin-left: 400px;
+	float: right;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+@media screen and (max-width: 500px) {
+	.nav-name {
+		width: calc(100% - 108px);
+	}
+
+	.nav-user {
+		width: 60px;
+	}
+
+	.nav-user span {
+		display: none;
+	}
 }
 
 /* SignIn Component */

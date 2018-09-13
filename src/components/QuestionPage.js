@@ -22,7 +22,7 @@ class QuestionPage extends Component {
   }
 
 	render() {
-		const { author, optionOne, optionTwo } = this.props
+		const { id, author, optionOne, optionTwo } = this.props
 
 		return (
       <div className='question-page'>
@@ -68,6 +68,7 @@ function mapStateToProps ({ questions, users }, props) {
   const optionTwo = questions[id].optionTwo.text
 
   return {
+    id,
     author,
     optionOne,
     optionTwo

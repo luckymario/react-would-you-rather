@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-//import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 import Question from './Question'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
@@ -24,6 +24,9 @@ class Dashboard extends Component {
 
 	render() {
 		const { value } = this.state
+    const { answeredQuestions, unansweredQuestions } = this.props
+
+    //console.log(answeredQuestions)
 
 		return (
 			<div className='questions-container'>
@@ -33,16 +36,28 @@ class Dashboard extends Component {
         </Tabs>
 
         {value === 0 && <TabContainer>
-          <Question id='6ni6ok3ym7mf1p33lnez' />
-        	<Question id='8xf0y6ziyjabvozdd253nd' />
+          {answeredQuestions.map((question) => (
+            <Question key={question.id} id={question.id} />
+          ))}
         </TabContainer>}
 
         {value === 1 && <TabContainer>
-        	<Question id='6ni6ok3ym7mf1p33lnez' />
+        	{unansweredQuestions.map((question) => (
+            <Question key={question.id} id={question.id} />
+          ))}
         </TabContainer>}
       </div>
 		)
 	}
 }
 
-export default Dashboard
+function mapStateToProps ({ questions, users, authedUser }) {
+  const userAnswersIds = Object.keys(users[authedUser].answers)
+
+  return {
+    answeredQuestions: Object.values(questions).filter((q) => (userAnswersIds.includes(q.id))),
+    unansweredQuestions: Object.values(questions).filter((q) => (!userAnswersIds.includes(q.id)))
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard)

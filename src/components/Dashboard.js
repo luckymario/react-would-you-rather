@@ -36,13 +36,13 @@ class Dashboard extends Component {
         </Tabs>
 
         {value === 0 && <TabContainer>
-          {answeredQuestions.map((question) => (
+          {unansweredQuestions.map((question) => (
             <Question key={question.id} id={question.id} />
           ))}
         </TabContainer>}
 
         {value === 1 && <TabContainer>
-        	{unansweredQuestions.map((question) => (
+        	{answeredQuestions.map((question) => (
             <Question key={question.id} id={question.id} />
           ))}
         </TabContainer>}

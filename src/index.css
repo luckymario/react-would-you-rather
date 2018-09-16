@@ -125,6 +125,15 @@ body {
 	font-size: 1.2rem;
 }
 
+.answer-container {
+	margin-top: 20px;
+	padding: 10px;
+}
+
+.answer-votes {
+	height: 15px !important;
+}
+
 /* General */
 .text-center {
 	text-align: center;

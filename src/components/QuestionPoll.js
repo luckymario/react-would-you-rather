@@ -12,6 +12,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
 
+import { handleSaveQuestionAnswer } from '../actions/questions'
+
 class QuestionPoll extends Component {
 	state = {
 		answer: null
@@ -19,6 +21,21 @@ class QuestionPoll extends Component {
 
 	handleChange = event => {
     this.setState({ answer: event.target.value });
+  }
+
+  handleVote = (e) => {
+    e.preventDefault()
+
+    const { id, dispatch, authedUser } = this.props
+    const { answer } = this.state
+
+    //console.log('Vote: ', this.state.answer)
+
+    dispatch(handleSaveQuestionAnswer({
+      authedUser: authedUser,
+      id: id,
+      answer: answer
+    }))
   }
 
 	render() {
@@ -43,13 +60,13 @@ class QuestionPoll extends Component {
               value={this.state.answer}
               onChange={this.handleChange}
             >
-              <FormControlLabel value="1" control={<Radio />} label={optionOne} />
-              <FormControlLabel value="2" control={<Radio />} label={optionTwo} />
+              <FormControlLabel value="optionOne" control={<Radio />} label={optionOne} />
+              <FormControlLabel value="optionTwo" control={<Radio />} label={optionTwo} />
             </RadioGroup>
           </FormControl>
         </CardContent>
         <CardActions className='question-actions'>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={this.handleVote}>
             Submit
           </Button>
         </CardActions>
@@ -67,6 +84,7 @@ function mapStateToProps ({ questions, users, authedUser }, props) {
 
   return {
     id,
+    authedUser,
     author,
     optionOne,
     optionTwo

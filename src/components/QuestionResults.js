@@ -10,7 +10,15 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 
 class QuestionResults extends Component {
 	render() {
-		const { author, optionOne, optionTwo } = this.props
+		const { author, optionOne, optionTwo, votes } = this.props
+
+    const allVotes = votes.length
+    const optionOneVotes = votes.filter((v) => v === 'optionOne').length
+    const optionOneVotesPer = Math.round(optionOneVotes * 100 / allVotes)
+    const optionTwoVotes = votes.filter((v) => v === 'optionTwo').length
+    const optionTwoVotesPer = Math.round(optionTwoVotes * 100 / allVotes)
+
+    console.log('Votes: ', votes.filter((v) => v === 'optionTwo').length)
 
 		return (
       <Card>
@@ -26,20 +34,20 @@ class QuestionResults extends Component {
           </Typography>
           <Paper className='answer-container'>
             <Typography variant="subheading">
-              {optionOne}
+              {`${optionOne} ✔`}
             </Typography>
-            <LinearProgress variant='determinate' value={66.6} color='secondary' className='answer-votes' />
+            <LinearProgress variant='determinate' value={optionOneVotesPer} color='secondary' className='answer-votes' />
             <Typography align='center'>
-              2 of 3 votes (66.6%)
+              {`${optionOneVotes} of ${allVotes} (${optionOneVotesPer}%)`}
             </Typography>
           </Paper>
           <Paper className='answer-container'>
             <Typography variant="subheading">
-              {optionTwo}
+             {`${optionTwo}`}
             </Typography>
-            <LinearProgress variant='determinate' value={33.3} className='answer-votes' />
+            <LinearProgress variant='determinate' value={optionTwoVotesPer} className='answer-votes' />
             <Typography align='center'>
-              1 of 3 votes (33.3%)
+              {`${optionTwoVotes} of ${allVotes} (${optionTwoVotesPer}%)`}
             </Typography>
           </Paper>
         </CardContent>
@@ -55,11 +63,31 @@ function mapStateToProps ({ questions, users }, props) {
   const optionOne = questions[id].optionOne.text
   const optionTwo = questions[id].optionTwo.text
 
+  /*
+  johndoe: {
+    answers: {
+      "xj352vofupe1dqz9emx13r": 'optionOne',
+      "vthrdm985a262al8qx3do": 'optionTwo',
+      "6ni6ok3ym7mf1p33lnez": 'optionOne'
+    },
+  }*/
+
+  let votes = []
+
+  Object.values(users).forEach((u) =>
+    Object.entries(u.answers).forEach((a) => {
+      if (a[0] === id) {
+        votes.push(a[1])
+      }
+    })
+  )
+
   return {
     id,
     author,
     optionOne,
-    optionTwo
+    optionTwo,
+    votes
   }
 }
 

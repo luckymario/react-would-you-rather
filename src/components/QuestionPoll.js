@@ -33,7 +33,7 @@ class QuestionPoll extends Component {
 
     dispatch(handleSaveQuestionAnswer({
       authedUser: authedUser,
-      id: id,
+      qid: id,
       answer: answer
     }))
   }

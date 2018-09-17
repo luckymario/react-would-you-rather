@@ -12,9 +12,9 @@ export default function questions (state = {}, action) {
 			return {
 				...state,
 				[action.authedUser]: {
-          ...action.users[action.authedUser],
+          ...state[action.authedUser],
           answers: {
-            ...action.users[action.authedUser].answers,
+            ...state[action.authedUser].answers,
             [action.qid]: action.answer
           }
         }

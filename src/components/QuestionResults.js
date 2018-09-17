@@ -10,7 +10,7 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 
 class QuestionResults extends Component {
 	render() {
-		const { author, optionOne, optionTwo, votes } = this.props
+		const { author, optionOne, optionTwo, userAnswer, votes } = this.props
 
     const allVotes = votes.length
     const optionOneVotes = votes.filter((v) => v === 'optionOne').length
@@ -18,7 +18,12 @@ class QuestionResults extends Component {
     const optionTwoVotes = votes.filter((v) => v === 'optionTwo').length
     const optionTwoVotesPer = Math.round(optionTwoVotes * 100 / allVotes)
 
-    console.log('Votes: ', votes.filter((v) => v === 'optionTwo').length)
+    const optionOneColor = (userAnswer === 'optionOne') ? 'secondary' : 'primary'
+    const optionTwoColor = (userAnswer === 'optionTwo') ? 'secondary' : 'primary'
+    const optionOneCheck = (userAnswer === 'optionOne') ? '✔' : ''
+    const optionTwoCheck = (userAnswer === 'optionTwo') ? '✔' : ''
+
+    //console.log('Answer: ', userAnswer)
 
 		return (
       <Card>
@@ -34,18 +39,18 @@ class QuestionResults extends Component {
           </Typography>
           <Paper className='answer-container'>
             <Typography variant="subheading">
-              {`${optionOne} ✔`}
+              {`${optionOne} ${optionOneCheck}`}
             </Typography>
-            <LinearProgress variant='determinate' value={optionOneVotesPer} color='secondary' className='answer-votes' />
+            <LinearProgress variant='determinate' value={optionOneVotesPer} color={optionOneColor} className='answer-votes' />
             <Typography align='center'>
               {`${optionOneVotes} of ${allVotes} (${optionOneVotesPer}%)`}
             </Typography>
           </Paper>
           <Paper className='answer-container'>
             <Typography variant="subheading">
-             {`${optionTwo}`}
+             {`${optionTwo} ${optionTwoCheck}`}
             </Typography>
-            <LinearProgress variant='determinate' value={optionTwoVotesPer} className='answer-votes' />
+            <LinearProgress variant='determinate' value={optionTwoVotesPer} color={optionTwoColor} className='answer-votes' />
             <Typography align='center'>
               {`${optionTwoVotes} of ${allVotes} (${optionTwoVotesPer}%)`}
             </Typography>
@@ -56,12 +61,13 @@ class QuestionResults extends Component {
 	}
 }
 
-function mapStateToProps ({ questions, users }, props) {
+function mapStateToProps ({ questions, users, authedUser }, props) {
   const { id } = props
   const authorId = questions[id].author
   const author = users[authorId]
   const optionOne = questions[id].optionOne.text
   const optionTwo = questions[id].optionTwo.text
+  const userAnswer = users[authedUser].answers[id]
 
   /*
   johndoe: {
@@ -87,7 +93,8 @@ function mapStateToProps ({ questions, users }, props) {
     author,
     optionOne,
     optionTwo,
-    votes
+    votes,
+    userAnswer
   }
 }
 

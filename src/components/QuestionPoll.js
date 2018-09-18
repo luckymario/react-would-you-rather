@@ -32,9 +32,9 @@ class QuestionPoll extends Component {
     //console.log('Vote: ', this.state.answer)
 
     dispatch(handleSaveQuestionAnswer({
-      authedUser: authedUser,
+      authedUser,
       qid: id,
-      answer: answer
+      answer
     }))
   }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-//import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
@@ -9,8 +9,54 @@ import FormControl from '@material-ui/core/FormControl'
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button'
 
+import { handleAddQuestion } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
+
 class NewQuestion extends Component {
+	state = {
+		optionOneText: '',
+		optionTwoText: '',
+		toHome: false
+	}
+
+	handleChangeOptionOne = (e) => {
+		const optionOneText = e.target.value
+
+		this.setState(() => ({
+			optionOneText
+		}))
+	}
+
+	handleChangeOptionTwo = (e) => {
+		const optionTwoText = e.target.value
+
+		this.setState(() => ({
+			optionTwoText
+		}))
+	}
+
+	handleSubmit = (e) => {
+		e.preventDefault()
+
+		const { optionOneText, optionTwoText } = this.state
+		const { dispatch } = this.props
+
+		dispatch(handleAddQuestion(optionOneText, optionTwoText))
+
+		this.setState(() => ({
+			optionOneText: '',
+			optionTwoText: '',
+			toHome: true
+		}))
+	}
+
 	render() {
+		const { optionOneText, optionTwoText, toHome } = this.state
+
+		if (toHome === true) {
+			return <Redirect to='/' />
+		}
+
 		return (
 			<div className='new-question-page'>
 				<Card>
@@ -22,16 +68,16 @@ class NewQuestion extends Component {
 
 	          <h4>Would you rather?</h4>
 
-	          <FormControl>
-							<Input name='optionTwo' placeholder='Write question 2' />
+	          <FormControl className='new-question-form-control'>
+							<Input name='optionOneText' placeholder='Write question 1' value={optionOneText} onChange={this.handleChangeOptionOne} />
 		        </FormControl>
 		        <p>OR</p>
-		        <FormControl>
-							<Input name='optionTwo' placeholder='Write question 2' />
+		        <FormControl className='new-question-form-control'>
+							<Input name='optionTwoText' placeholder='Write question 2' value={optionTwoText} onChange={this.handleChangeOptionTwo} />
 		        </FormControl>
 	        </CardContent>
-	        <CardActions>
-	          <Button variant="contained" color="primary">
+	        <CardActions className='question-actions'>
+	          <Button variant="contained" color="primary" disabled={optionOneText === '' || optionTwoText === ''} onClick={this.handleSubmit}>
 			        Submit
 			      </Button>
 	        </CardActions>
@@ -41,4 +87,4 @@ class NewQuestion extends Component {
 	}
 }
 
-export default NewQuestion
+export default connect()(NewQuestion)

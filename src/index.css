@@ -130,8 +130,25 @@ body {
 	padding: 10px;
 }
 
+.answer-results {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 8px;
+}
+
 .answer-votes {
+	width: 65%;
 	height: 15px !important;
+}
+
+.answer-label {
+	width: calc(35% - 8px);
+	line-height: 15px !important;
+	padding-left: 8px;
+}
+
+.new-question-form-control {
+	width: 100%;
 }
 
 /* General */

@@ -35,25 +35,29 @@ class QuestionResults extends Component {
         />
         <CardContent>
           <Typography variant="title" paragraph>
-            Results:
+            Results
           </Typography>
           <Paper className='answer-container'>
             <Typography variant="subheading">
               {`${optionOne} ${optionOneCheck}`}
             </Typography>
-            <LinearProgress variant='determinate' value={optionOneVotesPer} color={optionOneColor} className='answer-votes' />
-            <Typography align='center'>
-              {`${optionOneVotes} of ${allVotes} (${optionOneVotesPer}%)`}
-            </Typography>
+            <div className='answer-results'>
+              <LinearProgress variant='determinate' value={optionOneVotesPer} color={optionOneColor} className='answer-votes' />
+              <Typography className='answer-label'>
+                {`${optionOneVotes} of ${allVotes} (${optionOneVotesPer}%)`}
+              </Typography>
+            </div>
           </Paper>
           <Paper className='answer-container'>
             <Typography variant="subheading">
              {`${optionTwo} ${optionTwoCheck}`}
             </Typography>
-            <LinearProgress variant='determinate' value={optionTwoVotesPer} color={optionTwoColor} className='answer-votes' />
-            <Typography align='center'>
-              {`${optionTwoVotes} of ${allVotes} (${optionTwoVotesPer}%)`}
-            </Typography>
+            <div className='answer-results'>
+              <LinearProgress variant='determinate' value={optionTwoVotesPer} color={optionTwoColor} className='answer-votes' />
+              <Typography className='answer-label'>
+                {`${optionTwoVotes} of ${allVotes} (${optionTwoVotesPer}%)`}
+              </Typography>
+            </div>
           </Paper>
         </CardContent>
       </Card>

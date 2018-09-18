@@ -60,20 +60,20 @@ class NewQuestion extends Component {
 		return (
 			<div className='new-question-page'>
 				<Card>
-	        <CardHeader title='Create New Question' />
+	        <CardHeader title='Create New Question' align='center' />
 	        <CardContent>
 	          <Typography variant="subheading">
-	            Complete the questions
+	            Complete the question
 	          </Typography>
 
-	          <h4>Would you rather?</h4>
+	          <h4>Would you rather...</h4>
 
 	          <FormControl className='new-question-form-control'>
-							<Input name='optionOneText' placeholder='Write question 1' value={optionOneText} onChange={this.handleChangeOptionOne} />
+							<Input name='optionOneText' placeholder='Enter option one text here' value={optionOneText} onChange={this.handleChangeOptionOne} />
 		        </FormControl>
 		        <p>OR</p>
 		        <FormControl className='new-question-form-control'>
-							<Input name='optionTwoText' placeholder='Write question 2' value={optionTwoText} onChange={this.handleChangeOptionTwo} />
+							<Input name='optionTwoText' placeholder='Enter option two text here' value={optionTwoText} onChange={this.handleChangeOptionTwo} />
 		        </FormControl>
 	        </CardContent>
 	        <CardActions className='question-actions'>

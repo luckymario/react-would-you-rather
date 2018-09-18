@@ -12,10 +12,11 @@ class QuestionResults extends Component {
 	render() {
 		const { author, optionOne, optionTwo, userAnswer, votes } = this.props
 
-    const allVotes = votes.length
-    const optionOneVotes = votes.filter((v) => v === 'optionOne').length
+    const optionOneVotes = optionOne.votes.length
+    const optionTwoVotes = optionTwo.votes.length
+    const allVotes = optionOneVotes + optionTwoVotes
+
     const optionOneVotesPer = Math.round(optionOneVotes * 100 / allVotes)
-    const optionTwoVotes = votes.filter((v) => v === 'optionTwo').length
     const optionTwoVotesPer = Math.round(optionTwoVotes * 100 / allVotes)
 
     const optionOneColor = (userAnswer === 'optionOne') ? 'secondary' : 'primary'
@@ -39,7 +40,7 @@ class QuestionResults extends Component {
           </Typography>
           <Paper className='answer-container'>
             <Typography variant="subheading">
-              {`${optionOne} ${optionOneCheck}`}
+              {`${optionOne.text} ${optionOneCheck}`}
             </Typography>
             <div className='answer-results'>
               <LinearProgress variant='determinate' value={optionOneVotesPer} color={optionOneColor} className='answer-votes' />
@@ -50,7 +51,7 @@ class QuestionResults extends Component {
           </Paper>
           <Paper className='answer-container'>
             <Typography variant="subheading">
-             {`${optionTwo} ${optionTwoCheck}`}
+             {`${optionTwo.text} ${optionTwoCheck}`}
             </Typography>
             <div className='answer-results'>
               <LinearProgress variant='determinate' value={optionTwoVotesPer} color={optionTwoColor} className='answer-votes' />
@@ -69,8 +70,8 @@ function mapStateToProps ({ questions, users, authedUser }, props) {
   const { id } = props
   const authorId = questions[id].author
   const author = users[authorId]
-  const optionOne = questions[id].optionOne.text
-  const optionTwo = questions[id].optionTwo.text
+  const optionOne = questions[id].optionOne
+  const optionTwo = questions[id].optionTwo
   const userAnswer = users[authedUser].answers[id]
 
   /*
@@ -97,7 +98,6 @@ function mapStateToProps ({ questions, users, authedUser }, props) {
     author,
     optionOne,
     optionTwo,
-    votes,
     userAnswer
   }
 }

@@ -12,7 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
 
-import { handleSaveQuestionAnswer } from '../actions/questions'
+import { handleAddQuestionAnswer } from '../actions/questions'
 
 class QuestionPoll extends Component {
 	state = {
@@ -31,7 +31,7 @@ class QuestionPoll extends Component {
 
     //console.log('Vote: ', this.state.answer)
 
-    dispatch(handleSaveQuestionAnswer({
+    dispatch(handleAddQuestionAnswer({
       authedUser,
       qid: id,
       answer

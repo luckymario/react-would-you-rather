@@ -3,7 +3,7 @@ import { saveQuestion, saveQuestionAnswer } from '../utils/api'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
-export const SAVE_ANSWER = 'SAVE_ANSWER'
+export const ADD_QUESTION_ANSWER = 'ADD_QUESTION_ANSWER'
 
 export function receiveQuestions (questions) {
 	return {
@@ -35,23 +35,23 @@ export function handleAddQuestion (optionOneText, optionTwoText) {
 	}
 }
 
-function saveAnswer ({ authedUser, qid, answer }) {
+function addQuestionAnswer ({ authedUser, qid, answer }) {
 	return {
-		type: SAVE_ANSWER,
+		type: ADD_QUESTION_ANSWER,
 		authedUser,
 		qid,
 		answer
 	}
 }
 
-export function handleSaveQuestionAnswer (info) {
+export function handleAddQuestionAnswer (info) {
 	return (dispatch) => {
-		dispatch(saveAnswer(info))
+		dispatch(addQuestionAnswer(info))
 
 		return saveQuestionAnswer(info)
 			.catch((e) => {
 				console.warn('Error in handleSaveQuestionAnswer: ', e)
-				dispatch(saveAnswer(info))
+				dispatch(addQuestionAnswer(info))
 				alert('There was an error saving question answer. Try again.')
 			})
 	}

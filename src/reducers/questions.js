@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, SAVE_ANSWER, ADD_QUESTION } from '../actions/questions'
+import { RECEIVE_QUESTIONS, ADD_QUESTION_ANSWER, ADD_QUESTION } from '../actions/questions'
 
 export default function questions (state = {}, action) {
 	switch (action.type) {
@@ -31,7 +31,7 @@ export default function questions (state = {}, action) {
 				}
 			}	*/
 
-		case SAVE_ANSWER :
+		case ADD_QUESTION_ANSWER :
 			/*_saveQuestionAnswer ({ authedUser, qid, answer }):
 			users = {
         ...users,
@@ -55,6 +55,18 @@ export default function questions (state = {}, action) {
         }
       } */
 
+      let users = {}
+
+      /*users = {
+        [action.authedUser]: {
+          ...state[action.authedUser],
+          answers: {
+            ...state[action.authedUser].answers,
+            [action.qid]: action.answer
+          }
+        }
+      }*/
+
 			return {
 				/*...state,
 				[action.authedUser]: {
@@ -64,6 +76,7 @@ export default function questions (state = {}, action) {
             [action.qid]: action.answer
           }
         }*/
+
         ...state,
         [action.qid]: {
           ...state[action.qid],

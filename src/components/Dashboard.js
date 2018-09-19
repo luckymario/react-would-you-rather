@@ -39,6 +39,11 @@ class Dashboard extends Component {
           {unansweredQuestions.map((question) => (
             <Question key={question.id} id={question.id} />
           ))}
+          {!unansweredQuestions.length && (
+            <Typography variant="subheading">
+              You have answered all the questions :-)
+            </Typography>
+          )}
         </TabContainer>}
 
         {value === 1 && <TabContainer>

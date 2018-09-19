@@ -18,6 +18,10 @@ body {
 	justify-content: center;
 }
 
+.tab-container {
+	padding: 20px;
+}
+
 /* Navigation */
 .nav {
 	display: flex;

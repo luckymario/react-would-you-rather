@@ -8,6 +8,22 @@ import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper';
 import LinearProgress from '@material-ui/core/LinearProgress'
 
+function OptionContainer(props) {
+  return (
+    <Paper className='answer-container'>
+      <Typography variant="subheading">
+        {`${props.data.text} ${props.data.check}`}
+      </Typography>
+      <div className='answer-results'>
+        <LinearProgress variant='determinate' value={props.data.votesPer} color={props.data.color} className='answer-votes' />
+        <Typography className='answer-label'>
+          {`${props.data.votes} of ${props.data.allVotes} (${props.data.votesPer}%)`}
+        </Typography>
+      </div>
+    </Paper>
+  )
+}
+
 class QuestionResults extends Component {
 	render() {
 		const { author, optionOne, optionTwo, userAnswer, votes } = this.props
@@ -24,7 +40,23 @@ class QuestionResults extends Component {
     const optionOneCheck = (userAnswer === 'optionOne') ? '✔' : ''
     const optionTwoCheck = (userAnswer === 'optionTwo') ? '✔' : ''
 
-    //console.log('Answer: ', userAnswer)
+    const optionOneData = {
+      text: optionOne.text,
+      votes: optionOneVotes,
+      votesPer: optionOneVotesPer,
+      allVotes: allVotes,
+      color: optionOneColor,
+      check: optionOneCheck
+    }
+
+    const optionTwoData = {
+      text: optionTwo.text,
+      votes: optionTwoVotes,
+      votesPer: optionTwoVotesPer,
+      allVotes: allVotes,
+      color: optionTwoColor,
+      check: optionTwoCheck
+    }
 
 		return (
       <Card>
@@ -39,28 +71,8 @@ class QuestionResults extends Component {
           <Typography variant="title" paragraph>
             Results
           </Typography>
-          <Paper className='answer-container'>
-            <Typography variant="subheading">
-              {`${optionOne.text} ${optionOneCheck}`}
-            </Typography>
-            <div className='answer-results'>
-              <LinearProgress variant='determinate' value={optionOneVotesPer} color={optionOneColor} className='answer-votes' />
-              <Typography className='answer-label'>
-                {`${optionOneVotes} of ${allVotes} (${optionOneVotesPer}%)`}
-              </Typography>
-            </div>
-          </Paper>
-          <Paper className='answer-container'>
-            <Typography variant="subheading">
-             {`${optionTwo.text} ${optionTwoCheck}`}
-            </Typography>
-            <div className='answer-results'>
-              <LinearProgress variant='determinate' value={optionTwoVotesPer} color={optionTwoColor} className='answer-votes' />
-              <Typography className='answer-label'>
-                {`${optionTwoVotes} of ${allVotes} (${optionTwoVotesPer}%)`}
-              </Typography>
-            </div>
-          </Paper>
+          <OptionContainer data={optionOneData} />
+          <OptionContainer data={optionTwoData} />
         </CardContent>
       </Card>
 		)
@@ -74,25 +86,6 @@ function mapStateToProps ({ questions, users, authedUser }, props) {
   const optionOne = questions[id].optionOne
   const optionTwo = questions[id].optionTwo
   const userAnswer = users[authedUser].answers[id]
-
-  /*
-  johndoe: {
-    answers: {
-      "xj352vofupe1dqz9emx13r": 'optionOne',
-      "vthrdm985a262al8qx3do": 'optionTwo',
-      "6ni6ok3ym7mf1p33lnez": 'optionOne'
-    },
-  }*/
-
-  let votes = []
-
-  Object.values(users).forEach((u) =>
-    Object.entries(u.answers).forEach((a) => {
-      if (a[0] === id) {
-        votes.push(a[1])
-      }
-    })
-  )
 
   return {
     id,

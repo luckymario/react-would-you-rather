@@ -9,15 +9,17 @@ import Paper from '@material-ui/core/Paper';
 import LinearProgress from '@material-ui/core/LinearProgress'
 
 function OptionContainer(props) {
+  const { data } = props
+
   return (
     <Paper className='answer-container'>
       <Typography variant="subheading">
-        {`${props.data.text} ${props.data.check}`}
+        {`${data.text} ${data.check}`}
       </Typography>
       <div className='answer-results'>
-        <LinearProgress variant='determinate' value={props.data.votesPer} color={props.data.color} className='answer-votes' />
+        <LinearProgress variant='determinate' value={data.votesPer} color={data.color} className='answer-votes' />
         <Typography className='answer-label'>
-          {`${props.data.votes} of ${props.data.allVotes} (${props.data.votesPer}%)`}
+          {`${data.votes} of ${data.allVotes} (${data.votesPer}%)`}
         </Typography>
       </div>
     </Paper>

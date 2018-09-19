@@ -13,6 +13,7 @@ import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
 
 import { handleAddQuestionAnswer } from '../actions/questions'
+import { handleAddUserAnswer } from '../actions/users'
 
 class QuestionPoll extends Component {
 	state = {
@@ -29,13 +30,8 @@ class QuestionPoll extends Component {
     const { id, dispatch, authedUser } = this.props
     const { answer } = this.state
 
-    //console.log('Vote: ', this.state.answer)
-
-    dispatch(handleAddQuestionAnswer({
-      authedUser,
-      qid: id,
-      answer
-    }))
+    dispatch(handleAddQuestionAnswer(id, answer))
+    dispatch(handleAddUserAnswer(id, answer))
   }
 
 	render() {

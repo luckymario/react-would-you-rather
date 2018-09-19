@@ -19,6 +19,13 @@ function addQuestion (question) {
 	}
 }
 
+function addQuestionAnswer (answer) {
+	return {
+		type: ADD_QUESTION_ANSWER,
+		answer
+	}
+}
+
 export function handleAddQuestion (optionOneText, optionTwoText) {
 	return (dispatch, getState) => {
 		const { authedUser } = getState()
@@ -35,24 +42,19 @@ export function handleAddQuestion (optionOneText, optionTwoText) {
 	}
 }
 
-function addQuestionAnswer ({ authedUser, qid, answer }) {
-	return {
-		type: ADD_QUESTION_ANSWER,
-		authedUser,
-		qid,
-		answer
-	}
-}
+export function handleAddQuestionAnswer (qid, answer) {
+	return (dispatch, getState) => {
+		const { authedUser } = getState()
 
-export function handleAddQuestionAnswer (info) {
-	return (dispatch) => {
+		let info = {
+			authedUser,
+			qid,
+			answer
+		}
+
 		dispatch(addQuestionAnswer(info))
 
 		return saveQuestionAnswer(info)
-			.catch((e) => {
-				console.warn('Error in handleSaveQuestionAnswer: ', e)
-				dispatch(addQuestionAnswer(info))
-				alert('There was an error saving question answer. Try again.')
-			})
+		//.then(() => dispatch(hideLoading()))
 	}
 }

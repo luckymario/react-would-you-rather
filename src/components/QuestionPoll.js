@@ -44,6 +44,7 @@ class QuestionPoll extends Component {
             <Avatar src={author.avatarURL} className='question-avatar' />
           }
           title={`${author.name} asks`}
+          className='card-header-title'
         />
         <CardContent>
           <Typography variant="title">

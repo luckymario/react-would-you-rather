@@ -33,6 +33,7 @@ class QuestionResults extends Component {
             <Avatar src={author.avatarURL} className='question-avatar' />
           }
           title={`Asked by ${author.name}`}
+          className='card-header-title'
         />
         <CardContent>
           <Typography variant="title" paragraph>

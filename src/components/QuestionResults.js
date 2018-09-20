@@ -28,7 +28,7 @@ function OptionContainer(props) {
 
 class QuestionResults extends Component {
 	render() {
-		const { author, optionOne, optionTwo, userAnswer, votes } = this.props
+		const { author, optionOne, optionTwo, userAnswer } = this.props
 
     const optionOneVotes = optionOne.votes.length
     const optionTwoVotes = optionTwo.votes.length

@@ -26,7 +26,7 @@ class QuestionPoll extends Component {
   handleVote = (e) => {
     e.preventDefault()
 
-    const { id, dispatch, authedUser } = this.props
+    const { id, dispatch } = this.props
     const { answer } = this.state
 
     dispatch(handleAddQuestionAnswer(id, answer))
@@ -79,7 +79,6 @@ function mapStateToProps ({ questions, users, authedUser }, props) {
 
   return {
     id,
-    authedUser,
     author,
     optionOne,
     optionTwo

@@ -55,14 +55,9 @@ class Nav extends Component {
   }
 
   render() {
-    const { auth, users, authedUser } = this.props
+    const { auth, user } = this.props
     const { anchorAccountEl, open } = this.state
     const openAccount = Boolean(anchorAccountEl)
-
-    const index = users.findIndex(u => u.id === authedUser)
-    const user = auth ? users[index] : null
-
-    //console.log(user)
 
     return (
       <AppBar position="static">
@@ -144,10 +139,14 @@ class Nav extends Component {
 }
 
 function mapStateToProps ({ authedUser, users }) {
+  const usersArray = Object.values(users)
+  const index = usersArray.findIndex(u => u.id === authedUser)
+  const auth = authedUser !== null
+  const user = auth ? usersArray[index] : null
+
   return {
-    auth: authedUser !== null,
-    authedUser: authedUser,
-    users: Object.values(users)
+    auth,
+    user
   }
 }
 

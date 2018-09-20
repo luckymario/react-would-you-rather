@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -16,26 +16,27 @@ import Drawer from '@material-ui/core/Drawer'
 import Divider from '@material-ui/core/Divider'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
-import PollIcon from '@material-ui/icons/Poll';
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer'
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd'
+import PollIcon from '@material-ui/icons/Poll'
 
 class Nav extends Component {
   state = {
     anchorMenuEl: null,
     anchorAccountEl: null,
-    open: false
+    open: false,
+    toHome: false
   }
 
   handleAccount = event => {
-    this.setState({ anchorAccountEl: event.currentTarget });
+    this.setState({ anchorAccountEl: event.currentTarget })
   }
 
   handleAccountClose = () => {
-    this.setState({ anchorAccountEl: null });
+    this.setState({ anchorAccountEl: null })
   }
 
   handleLogout = () => {
@@ -43,7 +44,10 @@ class Nav extends Component {
 
     dispatch(setAuthedUser(null))
 
-    this.setState({ anchorAccountEl: null });
+    this.setState({
+      anchorAccountEl: null,
+      toHome: true
+    })
   }
 
   handleDrawerOpen = () => {
@@ -56,8 +60,12 @@ class Nav extends Component {
 
   render() {
     const { auth, user } = this.props
-    const { anchorAccountEl, open } = this.state
+    const { anchorAccountEl, open, toHome } = this.state
     const openAccount = Boolean(anchorAccountEl)
+
+    if (toHome === true) {
+      return <Redirect to='/' />
+    }
 
     return (
       <AppBar position="static">

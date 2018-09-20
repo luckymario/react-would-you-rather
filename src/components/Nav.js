@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
-import { NavLink, Redirect } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+//import { Redirect } from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -28,7 +29,7 @@ class Nav extends Component {
     anchorMenuEl: null,
     anchorAccountEl: null,
     open: false,
-    toHome: false
+    //toHome: false
   }
 
   handleAccount = event => {
@@ -46,7 +47,7 @@ class Nav extends Component {
 
     this.setState({
       anchorAccountEl: null,
-      toHome: true
+      //toHome: true
     })
   }
 
@@ -63,9 +64,9 @@ class Nav extends Component {
     const { anchorAccountEl, open, toHome } = this.state
     const openAccount = Boolean(anchorAccountEl)
 
-    if (toHome === true) {
+    /*if (toHome === true) {
       return <Redirect to='/' />
-    }
+    }*/
 
     return (
       <AppBar position="static">

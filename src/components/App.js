@@ -9,6 +9,7 @@ import Dashboard from './Dashboard'
 import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
+import Page404 from './Page404'
 
 class App extends Component {
   componentDidMount () {
@@ -28,13 +29,14 @@ class App extends Component {
                   <Route path='/question/:id' component={SignIn} />
                   <Route path='/add' component={SignIn} />
                   <Route path='/leaderboard' component={SignIn} />
+                  <Route path='/404' component={SignIn} />
                 </Fragment>
               : <Fragment>
-
                   <Route path='/' exact component={Dashboard} />
                   <Route path='/question/:id' component={QuestionPage} />
                   <Route path='/add' component={NewQuestion} />
                   <Route path='/leaderboard' component={LeaderBoard} />
+                  <Route path='/404' component={Page404} />
                 </Fragment>
               }
           </div>
@@ -44,7 +46,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, questions }) {
   return {
     loading: authedUser === null
   }

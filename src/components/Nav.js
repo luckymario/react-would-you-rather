@@ -82,21 +82,21 @@ class Nav extends Component {
             </div>
             <Divider />
             <List>
-              <ListItem button component={NavLink} to="/add" exact>
+              <ListItem button component={NavLink} to="/" exact onClick={this.handleDrawerClose}>
                 <ListItemIcon>
                   <QuestionAnswerIcon />
                 </ListItemIcon>
                 <ListItemText primary="Home" className='menu-item-text' />
               </ListItem>
 
-              <ListItem button component={NavLink} to="/add">
+              <ListItem button component={NavLink} to="/add" onClick={this.handleDrawerClose}>
                 <ListItemIcon>
                   <PlaylistAddIcon />
                 </ListItemIcon>
                 <ListItemText primary="New Question" className='menu-item-text' />
               </ListItem>
 
-              <ListItem button component={NavLink} to="/leaderboard">
+              <ListItem button component={NavLink} to="/leaderboard" onClick={this.handleDrawerClose}>
                 <ListItemIcon>
                   <PollIcon />
                 </ListItemIcon>

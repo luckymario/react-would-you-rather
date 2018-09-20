@@ -17,28 +17,32 @@ class App extends Component {
   }
 
   render() {
+    const { loading, auth } = this.props
+
     return (
       <Router>
         <Fragment>
-          {/*<LoadingBar />*/}
+          <LoadingBar />
           <Nav />
           <div className='container'>
-            {this.props.loading === true
-              ? <Fragment>
-                  <Route path='/' exact component={SignIn} />
-                  <Route path='/question/:id' component={SignIn} />
-                  <Route path='/add' component={SignIn} />
-                  <Route path='/leaderboard' component={SignIn} />
-                  <Route path='/404' component={SignIn} />
-                </Fragment>
-              : <Fragment>
-                  <Route path='/' exact component={Dashboard} />
-                  <Route path='/question/:id' component={QuestionPage} />
-                  <Route path='/add' component={NewQuestion} />
-                  <Route path='/leaderboard' component={LeaderBoard} />
-                  <Route path='/404' component={Page404} />
-                </Fragment>
-              }
+            {loading === true
+              ? null
+              : auth
+                ? <Fragment>
+                    <Route path='/' exact component={Dashboard} />
+                    <Route path='/question/:id' component={QuestionPage} />
+                    <Route path='/add' component={NewQuestion} />
+                    <Route path='/leaderboard' component={LeaderBoard} />
+                    <Route path='/404' component={Page404} />
+                  </Fragment>
+                : <Fragment>
+                    <Route path='/' exact component={SignIn} />
+                    <Route path='/question/:id' component={SignIn} />
+                    <Route path='/add' component={SignIn} />
+                    <Route path='/leaderboard' component={SignIn} />
+                    <Route path='/404' component={SignIn} />
+                  </Fragment>
+                }
           </div>
         </Fragment>
       </Router>
@@ -48,7 +52,8 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser, questions }) {
   return {
-    loading: authedUser === null
+    loading: Object.keys(questions).length === null,
+    auth: authedUser !== null
   }
 }
 

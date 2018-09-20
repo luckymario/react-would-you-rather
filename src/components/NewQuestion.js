@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardActions from '@material-ui/core/CardActions'
 import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
-import Input from '@material-ui/core/Input';
+import Input from '@material-ui/core/Input'
 import Button from '@material-ui/core/Button'
 
 import { handleAddQuestion } from '../actions/questions'

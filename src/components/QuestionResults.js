@@ -5,7 +5,7 @@ import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
-import Paper from '@material-ui/core/Paper';
+import Paper from '@material-ui/core/Paper'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
 function OptionContainer(props) {

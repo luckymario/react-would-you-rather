@@ -21,13 +21,13 @@ class SignIn extends Component {
   	const userId = e.target.value
   	const { dispatch } = this.props
 
-  	dispatch(setAuthedUser(userId))
+  	if (userId !== '') {
+  		dispatch(setAuthedUser(userId))
 
-  	this.setState(() => ({
-			userId
-		}))
-
-    //console.log(this.state.userId)
+	  	this.setState(() => ({
+				userId
+			}))
+  	}
   };
 
 	render() {

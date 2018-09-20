@@ -52,8 +52,16 @@ body {
 	margin-right: 10px;
 }
 
+.drawer-back-btn {
+	float: right;
+}
+
 .menu-item a {
 	text-decoration: none;
+}
+
+.menu-item-text {
+	float: right;
 }
 
 @media screen and (max-width: 500px) {

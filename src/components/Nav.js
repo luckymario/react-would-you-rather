@@ -80,8 +80,8 @@ class Nav extends Component {
             anchor="left"
             open={open}
           >
-            <div className='drawerHeader'>
-              <IconButton onClick={this.handleDrawerClose}>
+            <div className='drawer-header'>
+              <IconButton onClick={this.handleDrawerClose} className='drawer-back-btn'>
                 <ChevronLeftIcon />
               </IconButton>
             </div>
@@ -92,7 +92,7 @@ class Nav extends Component {
                   <ListItemIcon>
                     <QuestionAnswerIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Home" />
+                  <ListItemText primary="Home" className='menu-item-text' />
                 </NavLink>
               </ListItem>
 
@@ -101,7 +101,7 @@ class Nav extends Component {
                   <ListItemIcon>
                     <PlaylistAddIcon />
                   </ListItemIcon>
-                  <ListItemText primary="New Question" />
+                  <ListItemText primary="New Question" className='menu-item-text' />
                 </NavLink>
               </ListItem>
 
@@ -110,7 +110,7 @@ class Nav extends Component {
                   <ListItemIcon>
                     <PollIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Leader Board" />
+                  <ListItemText primary="Leader Board" className='menu-item-text' />
                 </NavLink>
               </ListItem>
             </List>

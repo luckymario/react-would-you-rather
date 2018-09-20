@@ -52,6 +52,10 @@ body {
 	margin-right: 10px;
 }
 
+.menu-item a {
+	text-decoration: none;
+}
+
 @media screen and (max-width: 500px) {
 	.nav-name {
 		width: calc(100% - 108px);

@@ -12,26 +12,26 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import Avatar from '@material-ui/core/Avatar'
 
+import Drawer from '@material-ui/core/Drawer'
+import Divider from '@material-ui/core/Divider'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
+import PollIcon from '@material-ui/icons/Poll';
+
 class Nav extends Component {
   state = {
     anchorMenuEl: null,
     anchorAccountEl: null,
-  }
-
-  handleChange = event => {
-    this.setState({ auth: event.target.checked });
-  }
-
-  handleMenu = event => {
-    this.setState({ anchorMenuEl: event.currentTarget });
+    open: false
   }
 
   handleAccount = event => {
     this.setState({ anchorAccountEl: event.currentTarget });
-  }
-
-  handleMenuClose = () => {
-    this.setState({ anchorMenuEl: null });
   }
 
   handleAccountClose = () => {
@@ -46,10 +46,17 @@ class Nav extends Component {
     this.setState({ anchorAccountEl: null });
   }
 
+  handleDrawerOpen = () => {
+    this.setState({ open: true })
+  }
+
+  handleDrawerClose = () => {
+    this.setState({ open: false })
+  }
+
   render() {
     const { auth, users, authedUser } = this.props
-    const { anchorMenuEl, anchorAccountEl } = this.state
-    const openMenu = Boolean(anchorMenuEl)
+    const { anchorAccountEl, open } = this.state
     const openAccount = Boolean(anchorAccountEl)
 
     const index = users.findIndex(u => u.id === authedUser)
@@ -63,34 +70,51 @@ class Nav extends Component {
           <IconButton
             color="inherit"
             aria-label="Menu"
-            onClick={this.handleMenu}
+            onClick={this.handleDrawerOpen}
           >
             <MenuIcon />
           </IconButton>
-          <Menu
-            id="menu-main"
-            anchorEl={anchorMenuEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'left',}}
-            transformOrigin={{ vertical: 'top', horizontal: 'left',}}
-            open={openMenu}
-            onClose={this.handleMenuClose}
+
+          <Drawer
+            variant="persistent"
+            anchor="left"
+            open={open}
           >
-            <MenuItem>
-              <NavLink to='/' exact activeClassName='active'>
-                Home
-              </NavLink>
-            </MenuItem>
-            <MenuItem>
-              <NavLink to='/add' exact activeClassName='active'>
-                New Question
-              </NavLink>
-            </MenuItem>
-            <MenuItem>
-              <NavLink to='/leaderboard' exact activeClassName='active'>
-                Leader Board
-              </NavLink>
-            </MenuItem>
-          </Menu>
+            <div className='drawerHeader'>
+              <IconButton onClick={this.handleDrawerClose}>
+                <ChevronLeftIcon />
+              </IconButton>
+            </div>
+            <Divider />
+            <List>
+              <ListItem button selected className='menu-item'>
+                <NavLink to='/' exact activeClassName='active'>
+                  <ListItemIcon>
+                    <QuestionAnswerIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Home" />
+                </NavLink>
+              </ListItem>
+
+              <ListItem button className='menu-item'>
+                <NavLink to='/add' exact>
+                  <ListItemIcon>
+                    <PlaylistAddIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="New Question" />
+                </NavLink>
+              </ListItem>
+
+              <ListItem button className='menu-item'>
+                <NavLink to='/leaderboard' exact>
+                  <ListItemIcon>
+                    <PollIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Leader Board" />
+                </NavLink>
+              </ListItem>
+            </List>
+          </Drawer>
 
           <Typography variant="title" color="inherit" className='nav-name'>
             Would you rather?

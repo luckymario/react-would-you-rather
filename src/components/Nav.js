@@ -82,31 +82,25 @@ class Nav extends Component {
             </div>
             <Divider />
             <List>
-              <ListItem button selected className='menu-item'>
-                <NavLink to='/' exact activeClassName='active'>
-                  <ListItemIcon>
-                    <QuestionAnswerIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Home" className='menu-item-text' />
-                </NavLink>
+              <ListItem button component={NavLink} to="/add" exact>
+                <ListItemIcon>
+                  <QuestionAnswerIcon />
+                </ListItemIcon>
+                <ListItemText primary="Home" className='menu-item-text' />
               </ListItem>
 
-              <ListItem button className='menu-item'>
-                <NavLink to='/add' exact>
-                  <ListItemIcon>
-                    <PlaylistAddIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="New Question" className='menu-item-text' />
-                </NavLink>
+              <ListItem button component={NavLink} to="/add">
+                <ListItemIcon>
+                  <PlaylistAddIcon />
+                </ListItemIcon>
+                <ListItemText primary="New Question" className='menu-item-text' />
               </ListItem>
 
-              <ListItem button className='menu-item'>
-                <NavLink to='/leaderboard' exact>
-                  <ListItemIcon>
-                    <PollIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Leader Board" className='menu-item-text' />
-                </NavLink>
+              <ListItem button component={NavLink} to="/leaderboard">
+                <ListItemIcon>
+                  <PollIcon />
+                </ListItemIcon>
+                <ListItemText primary="Leader Board" className='menu-item-text' />
               </ListItem>
             </List>
           </Drawer>

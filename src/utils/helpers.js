@@ -1,19 +1,15 @@
-export function formatUser (user, author, authedUser, parentTweet) {
-  const { id, likes, replies, text, timestamp } = tweet
-  const { name, avatarURL } = author
+export function formatUser (user) {
+  const { id, name, avatarURL, answers, questions } = user
+  const answeredQuestions = Object.keys(answers).length ? Object.keys(answers).length : 0
+  const createdQuestions = questions.length ? questions.length : 0
+  const score = answeredQuestions + createdQuestions
 
   return {
     id,
     name,
-    timestamp,
-    text,
-    avatar: avatarURL,
-    likes: likes.length,
-    replies: replies.length,
-    hasLiked: likes.includes(authedUser),
-    parent: !parentTweet ? null : {
-      author: parentTweet.author,
-      id: parentTweet.id,
-    }
+    avatarURL,
+    answeredQuestions,
+    createdQuestions,
+    score
   }
 }

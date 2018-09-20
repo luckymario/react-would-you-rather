@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
+import LoadingBar from 'react-redux-loading'
 import Nav from './Nav'
 import SignIn from './SignIn'
 import Dashboard from './Dashboard'
@@ -18,21 +19,24 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
+          {/*<LoadingBar />*/}
           <Nav />
           <div className='container'>
-            {this.props.auth
-                ? <Fragment>
-                    <Route path='/' exact component={Dashboard} />
-                    <Route path='/question/:id' component={QuestionPage} />
-                    <Route path='/add' component={NewQuestion} />
-                    <Route path='/leaderboard' component={LeaderBoard} />
-                  </Fragment>
-                : <Fragment>
-                    <Route path='/' exact component={SignIn} />
-                    <Route path='/question/:id' component={SignIn} />
-                    <Route path='/add' component={SignIn} />
-                    <Route path='/leaderboard' component={SignIn} />
-                  </Fragment>}
+            {this.props.loading === true
+              ? <Fragment>
+                  <Route path='/' exact component={SignIn} />
+                  <Route path='/question/:id' component={SignIn} />
+                  <Route path='/add' component={SignIn} />
+                  <Route path='/leaderboard' component={SignIn} />
+                </Fragment>
+              : <Fragment>
+
+                  <Route path='/' exact component={Dashboard} />
+                  <Route path='/question/:id' component={QuestionPage} />
+                  <Route path='/add' component={NewQuestion} />
+                  <Route path='/leaderboard' component={LeaderBoard} />
+                </Fragment>
+              }
           </div>
         </Fragment>
       </Router>
@@ -42,7 +46,7 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser }) {
   return {
-    auth: authedUser !== null
+    loading: authedUser === null
   }
 }
 

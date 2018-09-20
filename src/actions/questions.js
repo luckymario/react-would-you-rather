@@ -1,7 +1,7 @@
 import { saveQuestion, saveQuestionAnswer } from '../utils/api'
 import { handleAddUserAnswer } from '../actions/users'
 import { handleAddUserQuestion } from '../actions/users'
-//import { showLoading, hideLoading } from 'react-redux-loading'
+import { showLoading, hideLoading } from 'react-redux-loading'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
@@ -32,7 +32,7 @@ export function handleAddQuestion (optionOneText, optionTwoText) {
 	return (dispatch, getState) => {
 		const { authedUser } = getState()
 
-		//dispatch(showLoading())
+		dispatch(showLoading())
 
 		return saveQuestion({
 			optionOneText,
@@ -43,7 +43,7 @@ export function handleAddQuestion (optionOneText, optionTwoText) {
 			dispatch(addQuestion(question))
 			dispatch(handleAddUserQuestion(question.id))
 		})
-		//.then(() => dispatch(hideLoading()))
+		.then(() => dispatch(hideLoading()))
 	}
 }
 
@@ -57,13 +57,13 @@ export function handleAddQuestionAnswer (qid, answer) {
 			answer
 		}
 
-		//dispatch(showLoading())
+		dispatch(showLoading())
 
 		return saveQuestionAnswer(info)
 			.then(() => {
 				dispatch(addQuestionAnswer(info))
 				dispatch(handleAddUserAnswer(qid, answer))
 			})
-			//.then(() => dispatch(hideLoading()))
+			.then(() => dispatch(hideLoading()))
 	}
 }

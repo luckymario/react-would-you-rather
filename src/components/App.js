@@ -30,14 +30,14 @@ class App extends Component {
               : auth
                 ? <Fragment>
                     <Route path='/' exact component={Dashboard} />
-                    <Route path='/question/:id' component={QuestionPage} />
+                    <Route path='/questions/:id' component={QuestionPage} />
                     <Route path='/add' component={NewQuestion} />
                     <Route path='/leaderboard' component={LeaderBoard} />
                     <Route path='/404' component={Page404} />
                   </Fragment>
                 : <Fragment>
                     <Route path='/' exact component={SignIn} />
-                    <Route path='/question/:id' component={SignIn} />
+                    <Route path='/questions/:id' component={SignIn} />
                     <Route path='/add' component={SignIn} />
                     <Route path='/leaderboard' component={SignIn} />
                     <Route path='/404' component={SignIn} />

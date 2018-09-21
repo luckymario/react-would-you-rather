@@ -37,7 +37,7 @@ class Question extends Component {
           </Typography>
         </CardContent>
         <CardActions className='question-actions'>
-          <Link to={`/question/${id}`}>
+          <Link to={`/questions/${id}`}>
             <Button variant="contained" color="primary">
   		        View poll
   		      </Button>
